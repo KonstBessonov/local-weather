@@ -1,0 +1,32 @@
+body {
+    margin: 50px;
+    font-family: 'Catamaran', sans-serif;
+    background-color: royalblue;
+    color: beige;
+}
+
+.jumbotron {
+    background-color: midnightblue;
+}
+
+#weather-data {
+    font-size: 1.75em;
+}
+
+#city {
+    font-size: 2em;
+}
+
+.span-clickable {
+    color: aquamarine;
+    cursor: pointer;
+}
+
+#raw-data {
+    font-size: 0.9em;
+    color: cadetblue;
+}
+
+.panel-footer {
+    background-color: midnightblue;
+}

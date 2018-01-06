@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Catamaran" rel="stylesheet">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://use.fontawesome.com/releases/v5.0.2/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Local Weather</title>
+</head>
+
+<body>
+    <div class="jumbotron text-center">
+        <div class="container">
+            <h1>Local Weather Project</h1>
+            <div id="weather-data">
+                <div id="city">City:
+                    <span id="city-name"></span>
+                </div>
+                <br>
+                <div class="row text-left">
+
+                    <div class="col-xs-1 text-right">
+                        <i class="fas fa-thermometer-empty"></i>
+                    </div>
+                    <div class="col-xs-3">
+                        <div id="main">temperature:
+                            <span id="current-temp"></span>&deg;
+                            <span class="span-clickable" id="temp-units"></span>, humidity:
+                            <span id="current-humi"></span>%</div>
+                    </div>
+
+                    <div class="col-xs-1 text-right">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+
+                    <div class="col-xs-3">
+                        <div id="weather-conditions">condition:
+                            <span id="weather-cond"></span>
+                            <img id="weather-cond-img" src="" alt="" />
+                        </div>
+                        <div id="wind">wind:
+                            <span id="current-wind"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-1 text-right">
+                        <i class="far fa-sun"></i>
+                    </div>
+
+                    <div class="col-xs-3">
+                        sunrise:
+                        <span id="sunrise-time"></span>,
+                        <br> sunset:
+                        <span id="sunset-time"></span>
+                    </div>
+
+                </div>
+            </div>
+            <br>
+            <div id="raw-data">
+                <span class="span-clickable" id="show-raw-data">
+                    <i class="far fa-compass"></i>
+                </span>
+                <span id="raw-weather-data"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-footer text-center">
+        <i class="far fa-copyright"></i>
+        <a href="https://www.freecodecamp.org/konstbessonov" target="_blank">Konst Bessonov</a>, 2018
+    </div>
+
+
+</body>
+
+<!-- Latest compiled and minified JS -->
+<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/script.js"></script>
+
+</html>

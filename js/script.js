@@ -1,12 +1,14 @@
-var temperatureUnits = localStorage.getItem("temperatureUnits") || "C";
-var showRawData = localStorage.getItem("showRawData"); //  || false
+var temperatureUnits;
+var showRawData;
 
-$(document).ready(function() {
-    if(navigator.geolocation) {
+$(document).ready(function () {
+    temperatureUnits = localStorage.getItem("temperatureUnits") || "C";
+    showRawData = (localStorage.getItem("showRawData") == "true");
+    if (navigator.geolocation) {
         getLocalWeather();
         $("#temp-units").click(changeTempUnits);
         $("#show-raw-data").click(toggleRawData);
-    } else {    
+    } else {
         $("#weather-data").text("Sorry. Navigation is NOT supported in your browser!");
     }
 });
@@ -31,24 +33,24 @@ function getLocalWeather() {
 }
 
 function getPosition() {
-    return new Promise(function(resolve, reject) {
-        navigator.geolocation.getCurrentPosition(function(position) {
+    return new Promise(function (resolve, reject) {
+        navigator.geolocation.getCurrentPosition(function (position) {
             resolve([position.coords.latitude, position.coords.longitude]);
-        }, function(err) {
+        }, function (err) {
             reject(err.message);
         });
     });
 }
 
 function getWeatherData(coords) {
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
         $.ajax({
-            url: "https://fcc-weather-api.glitch.me/api/current?lat="+coords[0]+"&lon="+coords[1],
-            success: function(data) {
+            url: "https://fcc-weather-api.glitch.me/api/current?lat=" + coords[0] + "&lon=" + coords[1],
+            success: function (data) {
                 resolve(data);
             },
-            error: function(jqXHR, textStatus, errorThrown) {
-                reject("Failed to get weather data: "+textStatus+" "+errorThrown);
+            error: function (jqXHR, textStatus, errorThrown) {
+                reject("Failed to get weather data: " + textStatus + " " + errorThrown);
             }
 
         });
@@ -56,14 +58,14 @@ function getWeatherData(coords) {
 }
 
 function showWeatherData(data) {
-    $("#city-name").text(data.name+", "+data.sys.country);
+    $("#city-name").text(data.name + ", " + data.sys.country);
     $("#current-temp").text(convertTemperature(data.main.temp, temperatureUnits));
     $("#temp-units").text(temperatureUnits);
     $("#current-humi").text(data.main.humidity);
     $("#weather-cond").text(data.weather[0].main);
     $("#weather-cond-img").attr("src", data.weather[0].icon);
     $("#weather-cond-img").attr("alt", data.weather[0].description);
-    $("#current-wind").html(data.wind.speed+" m/s "+", "+data.wind.deg+"&deg; ("+describeDirection(data.wind.deg)+")");
+    $("#current-wind").html(data.wind.speed + " m/s " + ", " + data.wind.deg + "&deg; (" + describeDirection(data.wind.deg) + ")");
     $("#sunrise-time").text(timestampToTimeString(data.sys.sunrise));
     $("#sunset-time").text(timestampToTimeString(data.sys.sunset));
 
@@ -75,15 +77,15 @@ function catchError(err) {
 }
 
 function convertTemperature(tempInC, toUnits) {
-    return toUnits == "C" ? tempInC : tempInC*1.8+32;
+    return toUnits == "C" ? tempInC : tempInC * 1.8 + 32;
 }
 
 function describeDirection(dir) {
     var rhumbs = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"];
-    return rhumbs[Math.floor((dir+11.25)%360/22.5)];
+    return rhumbs[Math.floor((dir + 11.25) % 360 / 22.5)];
 }
 
 function timestampToTimeString(timestamp) {
-    var d = new Date(timestamp*1000);
+    var d = new Date(timestamp * 1000);
     return d.toLocaleTimeString();
 }

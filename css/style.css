@@ -5,6 +5,10 @@ body {
     color: beige;
 }
 
+a {
+    color: aquamarine;
+}
+
 .jumbotron {
     background-color: midnightblue;
 }
